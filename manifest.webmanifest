@@ -1,0 +1,22 @@
+{
+  "name": "Recipes",
+  "short_name": "Recipes",
+  "description": "A recipes application",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#da0000",
+  "orientation": "portrait",
+  "icons": [
+    {
+        "src": "assets/images/icons/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "assets/images/icons/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+]
+}
