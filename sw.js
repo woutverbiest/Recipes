@@ -1,6 +1,7 @@
 "use strict";
 
 const staticCacheName = "site-static-v1.0.0";
+const dynamicCache = "site-dynamic-v1.0.0";
 const assets = [
   "/",
   "/index.html",
@@ -33,11 +34,17 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  //console.log('fetch event', event);
-
   event.respondWith(
     caches.match(event.request).then((cacheRes) => {
-      return cacheRes || fetch(event.request);
+      return (
+        cacheRes ||
+        fetch(event.request).then((fetchRes) => {
+          return caches.open(dynamicCache).then((cache) => {
+            cache.put(event.request.url, fetchRes.clone());
+            return fetchRes;
+          });
+        })
+      );
     })
   );
 });
