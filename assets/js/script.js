@@ -12,10 +12,10 @@ function init() {
 
 function ui() {
   const menus = document.querySelectorAll(".side-menu");
-  M.Sidenav.init(menus, { edge: "right" });
+  M.Sidenav.init(menus, { edge: "left" });
 
   const forms = document.querySelectorAll(".side-form");
-  M.Sidenav.init(forms, { edge: "left" });
+  M.Sidenav.init(forms, { edge: "right" });
 }
 
 function registerServiceWorker() {
@@ -29,7 +29,9 @@ function registerServiceWorker() {
 
 const renderRecipe = (data, id) => {
   const html = `
-  <div class="card-panel recipe white row" data-id="${id}">
+  
+  <div class="col s12 s12 l6">
+  <div class="card-panel recipe white" data-id="${id}">
     <div class="recipe-details" >
       <div class="recipe-title">${data.title}</div>
         <div class="recipe-ingredients">${data.ingredients}</div>
@@ -39,6 +41,8 @@ const renderRecipe = (data, id) => {
       </div>
     </div>
   </div>
+  </div>
+  
   `;
 
   recipes.innerHTML += html;

@@ -40,16 +40,21 @@
     <meta name="theme-color" content="#da0000" />
   </head>
   <body class="grey lighten-4">
-    <nav class="z-depth-1">
-      <div class="nav-wrapper container">
-        <a href="/">Recipes</a>
-        <span class="right grey-text text-darken-1">
-          <i class="material-icons sidenav-trigger" data-target="side-menu"
-            >menu</i
+    <div class="navbar-fixed">
+      <nav class="z-depth-1">
+        <div class="nav-wrapper container">
+          <a href="/" class="brand-logo">Recipes</a>
+          <a href="#" data-target="side-menu" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
           >
-        </span>
-      </div>
-    </nav>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/" class="waves-effect">Home</a></li>
+            <li><a href="/about.html" class="waves-effect">About</a></li>
+            <li><a href="/contact.html" class="waves-effect">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
     <ul id="side-menu" class="sidenav side-menu">
       <li><a class="subheader">Recipes</a></li>
@@ -62,12 +67,12 @@
         </a>
       </li>
     </ul>
-
-    <div class="recipes container grey-text text-darken-1"></div>
+    
+    <div class="recipes container grey-text text-darken-1 row"></div>
 
     <div class="center">
       <a
-        class="btn-floating btn-small btn-large add-btn sidenav-trigger"
+        class="btn-floating btn-large add-btn sidenav-trigger"
         data-target="side-form"
       >
         <i class="material-icons">add</i>

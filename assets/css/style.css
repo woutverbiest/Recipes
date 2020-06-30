@@ -1,0 +1,15 @@
+nav{
+    background-color: #da0000;
+}
+
+.add-btn{
+    background-color: #da0000;
+    position:fixed;
+    bottom:20;
+    right:20;
+}
+
+.add-btn:hover{
+    background-color: #c00000;
+}
+
