@@ -35,27 +35,29 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches
-      .match(event.request)
-      .then((cacheRes) => {
-        return (
-          cacheRes ||
-          fetch(event.request).then((fetchRes) => {
-            return caches.open(dynamicCacheName).then((cache) => {
-              cache.put(event.request.url, fetchRes.clone());
-              limitCacheSize(dynamicCacheName, 20);
-              return fetchRes;
-            });
-          })
-        );
-      })
-      .catch(() => {
-        if (event.request.url.indexOf(".html") > -1) {
-          return caches.match("/fallback.html");
-        }
-      })
-  );
+  if (event.request.url.indexOf("firestore.googleapis.com") === -1) {
+    event.respondWith(
+      caches
+        .match(event.request)
+        .then((cacheRes) => {
+          return (
+            cacheRes ||
+            fetch(event.request).then((fetchRes) => {
+              return caches.open(dynamicCacheName).then((cache) => {
+                cache.put(event.request.url, fetchRes.clone());
+                limitCacheSize(dynamicCacheName, 20);
+                return fetchRes;
+              });
+            })
+          );
+        })
+        .catch(() => {
+          if (event.request.url.indexOf(".html") > -1) {
+            return caches.match("/fallback.html");
+          }
+        })
+    );
+  }
 });
 
 const limitCacheSize = (name, size) => {
