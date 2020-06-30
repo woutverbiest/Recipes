@@ -44,6 +44,7 @@ self.addEventListener("fetch", (event) => {
           fetch(event.request).then((fetchRes) => {
             return caches.open(dynamicCacheName).then((cache) => {
               cache.put(event.request.url, fetchRes.clone());
+              limitCacheSize(dynamicCacheName, 20);
               return fetchRes;
             });
           })
@@ -56,3 +57,13 @@ self.addEventListener("fetch", (event) => {
       })
   );
 });
+
+const limitCacheSize = (name, size) => {
+  caches.open(name).then((cache) => {
+    cache.keys().then((keys) => {
+      if (keys.length > size) {
+        cache.delete(keys[0]).then(limitCacheSize(name, size));
+      }
+    });
+  });
+};
