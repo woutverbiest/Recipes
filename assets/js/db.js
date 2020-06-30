@@ -24,17 +24,44 @@ const form = document.querySelector("form.add-recipe");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const recipe = {
-    title: form.title.value,
-    ingredients: form.ingredients.value,
-  };
+  var file = form.fileToUpload.files[0];
+  console.log(file);
 
-  db.collection("recipes")
-    .add(recipe)
-    .catch((err) => console.log(err));
+  var storageRef = defaultStorage.ref();
+  var imageRef = storageRef.child("images/" + file.name);
 
-  form.title.value = "";
-  form.ingredients.value = "";
+  var uploadTask = imageRef.put(file);
+
+  uploadTask.on(
+    firebase.storage.TaskEvent.STATE_CHANGED,
+    function (snapshot) {
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log("upload " + progress + "% done");
+    },
+    function (error) {
+      console.log(error);
+    },
+    function () {
+      uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+        const recipe = {
+          title: form.title.value,
+          ingredients: form.ingredients.value,
+          picture: downloadURL,
+        };
+
+        db.collection("recipes")
+          .add(recipe)
+          .then(() => {
+            form.title.value = "";
+            form.ingredients.value = "";
+            form.fileToUpload.value = "";
+          })
+          .catch((err) => console.log(err));
+      });
+
+      /**/
+    }
+  );
 });
 
 //delete a recipe
@@ -42,6 +69,6 @@ const recipeContainer = document.querySelector(".recipes");
 recipeContainer.addEventListener("click", (event) => {
   if (event.target.tagName === "I") {
     const id = event.target.getAttribute("data-id");
-    db.collection('recipes').doc(id).delete();
+    db.collection("recipes").doc(id).delete();
   }
 });

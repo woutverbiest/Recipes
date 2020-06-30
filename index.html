@@ -67,10 +67,10 @@
         </a>
       </li>
     </ul>
-    
+
     <div class="recipes container grey-text text-darken-1 row"></div>
 
-    <div class="center">
+    <div>
       <a
         class="btn-floating btn-large add-btn sidenav-trigger"
         data-target="side-form"
@@ -102,6 +102,7 @@
             class="validate"
           />
           <label for="ingredients">Ingredients</label>
+          <input type="file" name="fileToUpload" id="fileToUpload">
         </div>
         <div class="input-field center">
           <button class="btn-small">Add</button>
@@ -112,6 +113,7 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
 
     <script>
       // Your web app's Firebase configuration
@@ -126,8 +128,15 @@
         measurementId: "G-B5JKLKJ0Q5",
       };
       // Initialize Firebase
+
+
+      
+
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
+      const defaultStorage = firebase.storage();
+
+      
     </script>
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/db.js"></script>

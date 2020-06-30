@@ -30,15 +30,27 @@ function registerServiceWorker() {
 const renderRecipe = (data, id) => {
   const html = `
   
-  <div class="col s12 s12 l6">
-  <div class="card-panel recipe white" data-id="${id}">
-    <div class="recipe-details" >
-      <div class="recipe-title">${data.title}</div>
-        <div class="recipe-ingredients">${data.ingredients}</div>
+  <div class="col s12 m6 l4">
+  <div class="card recipe" data-id="${id}">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="${data.picture}"
+    </div>
+    <div class="card-content">
+      <div class="recipe-details">
+        <div class="recipe-title">${data.title}</div>    
       </div>
+        
+      </div>
+    </div>
+    <div class="card-reveal">
+    <span class="card-title grey-text text-darken-4">${data.title}<i class="material-icons right">close</i></span>
+
+      
+      <div class="recipe-ingredients">${data.ingredients}</div>
       <div class="recipe-delete">
         <i class="material-icons" data-id="${id}">delete_outline</i>
       </div>
+    <p
     </div>
   </div>
   </div>
