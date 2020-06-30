@@ -49,6 +49,10 @@ self.addEventListener("fetch", (event) => {
           })
         );
       })
-      .catch(() => caches.match("/fallback.html"))
+      .catch(() => {
+        if (event.request.url.indexOf(".html") > -1) {
+          return caches.match("/fallback.html");
+        }
+      })
   );
 });
