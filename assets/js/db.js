@@ -9,7 +9,6 @@ db.enablePersistence().catch((err) => {
 
 //real-time db listener
 db.collection("recipes").onSnapshot((snapshot) => {
-  console.log("kzit iere");
   snapshot.docChanges().forEach((change) => {
     if (change.type === "added") {
       renderRecipe(change.doc.data(), change.doc.id);
@@ -18,3 +17,21 @@ db.collection("recipes").onSnapshot((snapshot) => {
     }
   });
 });
+
+//create new recipe
+const form = document.querySelector('form.add-recipe');
+
+form.addEventListener('submit', event =>{
+  event.preventDefault();
+
+  const recipe = {
+    title: form.title.value,
+    ingredients: form.ingredients.value,
+  };
+
+  db.collection('recipes').add(recipe)
+    .catch(err => console.log(err));
+
+  form.title.value = '';
+  form.ingredients.value = '';
+})
