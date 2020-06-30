@@ -13,13 +13,31 @@
     <link type="text/css" href="assets/css/style.css" rel="stylesheet" />
     <script type="text/javascript" src="assets/js/materialize.min.js"></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-touch-icon.png">
-    <link rel="apple-mobile-web-app-status-bar" content="#da0000">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icons/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="mask-icon" href="assets/images/icons/safari-pinned-tab.svg" color="#da0000">
-    <meta name="theme-color" content="#da0000">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/icons/apple-touch-icon.png"
+    />
+    <link rel="apple-mobile-web-app-status-bar" content="#da0000" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="assets/images/icons/safari-pinned-tab.svg"
+      color="#da0000"
+    />
+    <meta name="theme-color" content="#da0000" />
   </head>
   <body class="grey lighten-4">
     <nav class="z-depth-1">
@@ -99,6 +117,27 @@
       </form>
     </div>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCpo66Eyszgix-YDYyeEkQQGcJE1ylYpU0",
+        authDomain: "woutverbiest-recipes.firebaseapp.com",
+        databaseURL: "https://woutverbiest-recipes.firebaseio.com",
+        projectId: "woutverbiest-recipes",
+        storageBucket: "woutverbiest-recipes.appspot.com",
+        messagingSenderId: "214333606830",
+        appId: "1:214333606830:web:d44eafddb45a3dbe0ed63f",
+        measurementId: "G-B5JKLKJ0Q5",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/db.js"></script>
   </body>
 </html>
